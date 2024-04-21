@@ -1,0 +1,56 @@
+SELECT * FROM clientes WHERE Edad >25
+ORDER BY Edad ASC;
+
+SELECT Nombres 
+FROM clientes 
+WHERE Edad>=18 AND Edad<=26;
+
+SELECT Categorias
+FROM categorias
+WHERE Categorias <> 'Suspenso' AND Categorias <> 'Drama';
+
+SELECT n.Nombres,n.Apellidos,n.DUI 
+FROM clientes n
+JOIN rentas r ON n.DUI = r.DUI
+where mora>0;
+
+SELECT * 
+FROM clientes
+where Fecha_Afiliacion > '2022-04-13';
+
+SELECT TOP 3 CodP,Nombre, Disponible
+FROM peliculas
+ORDER BY Disponible DESC;
+
+UPDATE categorias
+SET Categorias = 'Games'
+WHERE Categorias = 'Juegos';
+
+UPDATE peliculas
+SET Fecha_Ingreso = '2022-04-13',
+	Disponible = 10
+WHERE Nombre = 'Ace Ventura';
+
+SELECT Nombre
+FROM peliculas
+WHERE LEFT(Nombre,1) = 'A';
+
+DELETE FROM rentas
+WHERE DUI='01900683-1';
+//para verificar que si se borraron
+SELECT r.CodP,p.Nombre, r.DUI,c.Nombres,c.Apellidos
+FROM rentas r
+JOIN clientes c ON c.DUI= r.DUI
+JOIN peliculas p ON p.CodP = r.CodP;
+
+
+SELECT c.Categorias, p.Nombre
+FROM categorias c
+JOIN peliculas p ON p.CodC=c.CodC
+ORDER BY c.Categorias ASC;
+
+SELECT c.Categorias, p.Nombre, t.Nombre_tipo
+FROM categorias c
+JOIN peliculas p ON p.CodC=c.CodC
+JOIN tipos t ON t.codT = p.CodT
+ORDER BY c.Categorias ASC;

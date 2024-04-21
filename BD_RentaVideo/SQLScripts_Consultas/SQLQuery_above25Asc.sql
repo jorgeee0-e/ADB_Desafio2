@@ -1,0 +1,2 @@
+SELECT * FROM clientes WHERE Edad >25
+ORDER BY Edad DESC;
